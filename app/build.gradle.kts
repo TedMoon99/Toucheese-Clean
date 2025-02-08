@@ -63,8 +63,8 @@ dependencies {
     implementation(project(":presentation"))
     implementation(project(":domain"))
     // Dagger-Hilt
-    implementation("com.google.dagger:hilt-android:2.55")
-    kapt("com.google.dagger:hilt-android-compiler:2.55")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
 
 // Dagger-Hilt
