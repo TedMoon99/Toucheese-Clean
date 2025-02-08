@@ -1,4 +1,4 @@
-package com.toucheese.presentation.theme
+package com.toucheese.presentation.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

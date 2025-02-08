@@ -1,4 +1,4 @@
-package com.toucheese.di
+package com.toucheese
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
