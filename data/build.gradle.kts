@@ -57,10 +57,8 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.truth)
     // Dependency Setting
-    implementation(project(":domain"))
     // Dagger-Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     // Hilt 테스트 라이브러리
     testImplementation(libs.hilt.android.testing)
@@ -70,7 +68,12 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor) // 로그 출력용
-
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    testImplementation(libs.androidx.room.testing)
+    implementation(libs.androidx.room.paging)
+    kapt(libs.hilt.android.compiler)
 
 }
 

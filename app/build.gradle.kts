@@ -61,7 +61,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     // Dependency Setting
     implementation(project(":presentation"))
-    implementation(project(":domain"))
     // Dagger-Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
