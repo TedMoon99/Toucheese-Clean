@@ -1,4 +1,4 @@
-package com.tedmoon99.data.datasource.remote
+package com.tedmoon99.data.di
 
 import com.tedmoon99.data.BuildConfig.BASE_URL
 import dagger.Module
