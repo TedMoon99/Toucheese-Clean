@@ -18,7 +18,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://toucheese.shop/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.toucheese-macwin.store/\"")
         }
         release {
             isMinifyEnabled = false
@@ -26,7 +26,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://toucheese.shop/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.toucheese-macwin.store/\"")
         }
     }
     compileOptions {
