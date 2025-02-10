@@ -3,8 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     // Dagger-Hilt
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -63,10 +62,5 @@ dependencies {
     implementation(project(":presentation"))
     // Dagger-Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-}
-
-// Dagger-Hilt
-kapt {
-    correctErrorTypes = true
+    ksp(libs.androidx.room.compiler)
 }

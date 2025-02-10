@@ -4,8 +4,7 @@ plugins {
     // Compose
     id("org.jetbrains.kotlin.plugin.compose")
     // Dagger-Hilt
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -57,13 +56,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     // Dependency Setting
+    implementation(project(":domain"))
     // Dagger-Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
-    kapt(libs.hilt.android.compiler)
-}
-
-// Dagger-Hilt
-kapt {
-    correctErrorTypes = true
+    ksp(libs.androidx.room.compiler)
 }

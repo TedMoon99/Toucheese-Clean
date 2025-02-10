@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     // Dagger-Hilt
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -57,13 +56,12 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.truth)
     // Dependency Setting
+    implementation(project(":domain"))
     // Dagger-Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
-    // Hilt 테스트 라이브러리
     testImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.android.compiler)
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
@@ -73,11 +71,10 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     testImplementation(libs.androidx.room.testing)
     implementation(libs.androidx.room.paging)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.androidx.room.compiler)
+    // Mock
+    testImplementation(libs.mockk)
+    // Junit
+    testImplementation(libs.junit.jupiter)
 
-}
-
-// Dagger-Hilt
-kapt {
-    correctErrorTypes = true
 }
