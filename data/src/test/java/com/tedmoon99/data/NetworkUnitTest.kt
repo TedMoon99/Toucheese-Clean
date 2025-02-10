@@ -1,7 +1,7 @@
 package com.tedmoon99.data
 
 import com.google.gson.annotations.SerializedName
-import com.tedmoon99.data.datasource.remote.NetworkModule
+import com.tedmoon99.data.di.NetworkModule
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

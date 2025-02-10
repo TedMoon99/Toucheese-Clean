@@ -22,5 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "Toucheese-Clean"
 include(":app")
 include(":presentation")
-include(":domain")
 include(":data")
+include(":domain")
