@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Toucheese-Clean</string>
+    <string name="topbar_image_title">TopBar image title</string>
+    <string name="topbar_image_leadingIcon">TopBar image leadingIcon</string>
+    <string name="topbar_image_trailingIcon">TopBar image trailingIcon</string>
+
 </resources>
