@@ -7,5 +7,10 @@
     <string name="tabItem_label_bookSchedule">예약일정</string>
     <string name="tabItem_label_qna">문의하기</string>
     <string name="tabItem_label_myInfo">내정보</string>
-
+    <string name="concept_image1">생동감 있는</string>
+    <string name="concept_image2">플래쉬/유광</string>
+    <string name="concept_image3">흑백/블루 배우</string>
+    <string name="concept_image4">내추럴 화보</string>
+    <string name="concept_image5">선명한</string>
+    <string name="concept_image6">수채화 그림체</string>
 </resources>
