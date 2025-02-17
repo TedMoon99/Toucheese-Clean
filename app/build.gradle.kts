@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     // Dagger-Hilt
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -60,7 +61,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     // Dependency Setting
     implementation(project(":presentation"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
     // Dagger-Hilt
     implementation(libs.hilt.android)
     ksp(libs.androidx.room.compiler)
+    ksp(libs.hilt.android.compiler)
 }
