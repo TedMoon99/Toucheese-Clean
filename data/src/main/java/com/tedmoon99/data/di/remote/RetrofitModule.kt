@@ -1,6 +1,7 @@
-package com.tedmoon99.data.di
+package com.tedmoon99.data.di.remote
 
 import com.tedmoon99.data.BuildConfig.BASE_URL
+import com.tedmoon99.data.datasource.remote.studio.api.StudioService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object NetworkModule {
+object RetrofitModule {
 
 
     @Provides
@@ -48,5 +49,11 @@ object NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideStudioService(retrofit: Retrofit): StudioService {
+        return retrofit.create(StudioService::class.java)
     }
 }
