@@ -1,4 +1,4 @@
-package com.tedmoon99.data.di
+package com.tedmoon99.data.di.local
 
 import android.content.Context
 import androidx.room.Room
