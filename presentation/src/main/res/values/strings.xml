@@ -3,6 +3,8 @@
     <string name="topbar_image_title">TopBar image title</string>
     <string name="topbar_image_leadingIcon">TopBar image leadingIcon</string>
     <string name="topbar_image_trailingIcon">TopBar image trailingIcon</string>
+    <string name="searchbar_icon">Search</string>
+    <string name="searchbar_placeholder">스튜디오 찾기</string>
     <string name="tabItem_label_home">홈</string>
     <string name="tabItem_label_bookSchedule">예약일정</string>
     <string name="tabItem_label_qna">문의하기</string>
