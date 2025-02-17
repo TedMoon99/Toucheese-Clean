@@ -15,4 +15,17 @@
     <string name="concept_image4">내추럴 화보</string>
     <string name="concept_image5">선명한</string>
     <string name="concept_image6">수채화 그림체</string>
+    <string name="text_introduce1">스튜디오 고민은 그만!</string>
+    <string name="text_introduce2">터치즈에 로그인하고 스튜디오를 한 눈에 살펴보세요.</string>
+    <string name="placeholder_email">이메일을 입력해주세요</string>
+    <string name="placeholder_password">비밀번호를 입력해주세요</string>
+    <string name="label_signIn">로그인</string>
+    <string name="label_kakao_signIn">카카오 로그인</string>
+    <string name="label_autoSignIn">자동 로그인</string>
+    <string name="label_signUp">회원가입</string>
+    <string name="label_findAccount">ID·PASSWORD 찾기</string>
+
+
+
+
 </resources>
