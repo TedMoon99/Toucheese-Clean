@@ -1,7 +1,7 @@
 package com.tedmoon99.data
 
 import com.google.gson.annotations.SerializedName
-import com.tedmoon99.data.di.NetworkModule
+import com.tedmoon99.data.di.remote.RetrofitModule
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,11 +30,11 @@ class NetworkUnitTest {
 
     @Before
     fun setRetrofit() {
-        interceptor = NetworkModule.provideLoggingInterceptor()
+        interceptor = RetrofitModule.provideLoggingInterceptor()
         // OkHttp 설정
-        okHttpClient = NetworkModule.provideOkHttpClient(interceptor!!)
+        okHttpClient = RetrofitModule.provideOkHttpClient(interceptor!!)
         // Retrofit 설정
-        retrofit = NetworkModule.provideRetrofit(okHttpClient!!)
+        retrofit = RetrofitModule.provideRetrofit(okHttpClient!!)
         // Interface 설정
         testInterface = retrofit!!.create(NetworkUnitTestInterface::class.java)
     }
