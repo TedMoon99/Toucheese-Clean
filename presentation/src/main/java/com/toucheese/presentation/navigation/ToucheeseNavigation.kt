@@ -1,15 +1,22 @@
 package com.toucheese.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.toucheese.presentation.ui.screens.HomeScreen
+import com.toucheese.presentation.utils.Navigation.Companion.bottomNavClicked
+import com.toucheese.presentation.utils.Screen
 
 @Composable
 fun ToucheeseNavigation() {
     val navController = rememberNavController()
+    var bottomNavSelectedTab by remember { mutableIntStateOf(0) }
 
     NavHost(
         navController = navController,
@@ -17,7 +24,19 @@ fun ToucheeseNavigation() {
     ) {
 
         composable(Screen.Home.route){ backStackEntry: NavBackStackEntry ->
-            HomeScreen()
+            HomeScreen(
+                selectedTab = bottomNavSelectedTab,
+                onTabSelected = { selectedTab ->
+                    bottomNavClicked(
+                        selectedTab = selectedTab,
+                        navController = navController
+                    )
+                },
+                onCardClick = { conceptId: Int ->
+                    // 컨셉 스튜디오 조회 페이지로 이동
+
+                }
+            )
         }
     }
 }
