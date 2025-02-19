@@ -1,4 +1,4 @@
-package com.tedmoon99.data.di.local
+package com.toucheese.di
 
 import android.content.Context
 import androidx.room.Room
@@ -16,7 +16,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-
     @Provides
     @Singleton
     fun provideTestConceptDatabase(@ApplicationContext context: Context): TestConceptDatabase {
@@ -29,7 +28,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideTestRepository(testRepositoryImpl: TestRepositoryImpl): TestRepository{
+    fun provideTestRepository(testRepositoryImpl: TestRepositoryImpl): TestRepository {
         return testRepositoryImpl
     }
 }
