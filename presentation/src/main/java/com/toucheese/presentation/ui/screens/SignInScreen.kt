@@ -15,29 +15,40 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.toucheese.presentation.R
 import com.toucheese.presentation.ui.component.button.ButtonComponent
 import com.toucheese.presentation.ui.component.button.CheckBoxButtonComponent
 import com.toucheese.presentation.ui.component.button.TextButtonComponent
 import com.toucheese.presentation.ui.component.textfield.OutlinedTextFieldComponent
+import com.toucheese.presentation.ui.viewmodel.SignInViewModel
 
 @Composable
 fun SignInScreen(
-
+    viewModel: SignInViewModel = hiltViewModel(),
     hostState: SnackbarHostState,
     onSignInClicked: () -> Unit,
     onKakaoSignInClicked: () -> Unit,
 ) {
+
+    val (email, setEmail) = remember { mutableStateOf("") }
+    val (password, setPassword) = remember { mutableStateOf("") }
+    val autoSignIn by viewModel.autoSignIn.collectAsState()
+
     Scaffold(
         snackbarHost = {
             SnackbarHost(hostState = hostState)
@@ -89,7 +100,7 @@ fun SignInScreen(
             // 입력 필드
             item {
                 OutlinedTextFieldComponent(
-                    inputText = "",
+                    inputText = email,
                     placeHolder = R.string.placeholder_email,
                     cornerShape = RoundedCornerShape(8.dp),
                     keyboardOptions = KeyboardOptions.Default.copy(
@@ -99,15 +110,13 @@ fun SignInScreen(
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     visualTransformation = VisualTransformation.None,
-                    onValueChange = {
-
-                    }
+                    onValueChange = setEmail
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
 
                 OutlinedTextFieldComponent(
-                    inputText = "",
+                    inputText = password,
                     placeHolder = R.string.placeholder_password,
                     cornerShape = RoundedCornerShape(8.dp),
                     keyboardOptions = KeyboardOptions.Default.copy(
@@ -116,10 +125,8 @@ fun SignInScreen(
                     ),
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
-                    visualTransformation = VisualTransformation.None,
-                    onValueChange = {
-
-                    }
+                    visualTransformation = PasswordVisualTransformation(),
+                    onValueChange = setPassword
                 )
 
                 // 빈 공간
@@ -132,10 +139,12 @@ fun SignInScreen(
                 ) {
                     // 자동 로그인
                     CheckBoxButtonComponent(
-                        checked = false,
+                        checked = autoSignIn,
                         label = R.string.label_autoSignIn,
                         modifier = Modifier.padding(1.dp),
-                        onCheckChange = { }
+                        onCheckChange = {
+                            viewModel.setAuthSignIn(it)
+                        }
                     )
 
                     Spacer(modifier = Modifier.weight(1f))
@@ -168,6 +177,8 @@ fun SignInScreen(
                     buttonShape = RoundedCornerShape(8.dp),
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
+                        // 로그인 요청
+                        viewModel.requestSignIn(email, password)
 
                     }
                 )
