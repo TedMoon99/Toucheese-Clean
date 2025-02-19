@@ -59,6 +59,14 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor) // 로그 출력용
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+    ksp(libs.androidx.room.compiler)
+    ksp(libs.hilt.android.compiler)
     // Dependency Setting
     implementation(project(":presentation"))
     implementation(project(":data"))
@@ -67,4 +75,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.androidx.room.compiler)
     ksp(libs.hilt.android.compiler)
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.preferences.core)
+
 }
