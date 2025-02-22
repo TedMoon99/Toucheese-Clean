@@ -11,11 +11,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
+import retrofit2.create
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object AppModule {
+object StudioModule {
 
 
     @Provides
@@ -34,5 +36,11 @@ object AppModule {
     fun provideStudioUseCase(repository: StudioRepository): StudioUseCase {
         return StudioUseCase(repository)
     }
+
+    @Provides
+    @Singleton
+    fun provideStudioService(
+        @NetworkModule.BaseClient retrofit: Retrofit
+    ): StudioService = retrofit.create()
 
 }
