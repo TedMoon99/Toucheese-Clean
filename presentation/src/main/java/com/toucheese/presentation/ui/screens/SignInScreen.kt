@@ -30,7 +30,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.tedmoon99.domain.usecase.member.SignInResult
+import com.tedmoon99.domain.intent.member.SignInResult
 import com.toucheese.presentation.R
 import com.toucheese.presentation.ui.component.button.ButtonComponent
 import com.toucheese.presentation.ui.component.button.CheckBoxButtonComponent

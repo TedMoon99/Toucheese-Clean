@@ -12,7 +12,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.tedmoon99.domain.usecase.member.SignInResult
+import com.tedmoon99.domain.intent.member.SignInResult
 import com.toucheese.presentation.ui.screens.HomeScreen
 import com.toucheese.presentation.ui.screens.SignInScreen
 import com.toucheese.presentation.utils.Navigation.Companion.bottomNavClicked

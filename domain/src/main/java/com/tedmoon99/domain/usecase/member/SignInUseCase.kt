@@ -1,6 +1,7 @@
 package com.tedmoon99.domain.usecase.member
 
 import com.tedmoon99.domain.entity.auth.sign_in.SignInRequestEntity
+import com.tedmoon99.domain.intent.member.SignInResult
 import com.tedmoon99.domain.repository.member.MemberRepository
 import javax.inject.Inject
 

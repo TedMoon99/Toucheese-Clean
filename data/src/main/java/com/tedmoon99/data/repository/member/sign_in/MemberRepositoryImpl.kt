@@ -11,7 +11,7 @@ import com.tedmoon99.data.model.remote.member.sign_in.SignInResponse
 import com.tedmoon99.domain.entity.auth.sign_in.SignInRequestEntity
 import com.tedmoon99.domain.repository.member.MemberRepository
 import com.tedmoon99.domain.repository.member.TokenRepository
-import com.tedmoon99.domain.usecase.member.SignInResult
+import com.tedmoon99.domain.intent.member.SignInResult
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject

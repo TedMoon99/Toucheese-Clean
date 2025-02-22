@@ -5,7 +5,7 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tedmoon99.domain.usecase.member.SignInResult
+import com.tedmoon99.domain.intent.member.SignInResult
 import com.tedmoon99.domain.usecase.member.SignInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

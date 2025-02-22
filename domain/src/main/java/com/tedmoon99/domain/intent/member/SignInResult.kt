@@ -1,4 +1,4 @@
-package com.tedmoon99.domain.usecase.member
+package com.tedmoon99.domain.intent.member
 
 sealed class SignInResult {
     data class Success(val success: String): SignInResult()
