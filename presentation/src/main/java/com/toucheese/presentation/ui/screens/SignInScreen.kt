@@ -30,6 +30,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.tedmoon99.domain.usecase.member.SignInResult
 import com.toucheese.presentation.R
 import com.toucheese.presentation.ui.component.button.ButtonComponent
 import com.toucheese.presentation.ui.component.button.CheckBoxButtonComponent
@@ -41,7 +42,7 @@ import com.toucheese.presentation.ui.viewmodel.SignInViewModel
 fun SignInScreen(
     viewModel: SignInViewModel = hiltViewModel(),
     hostState: SnackbarHostState,
-    onSignInClicked: () -> Unit,
+    onSignInClicked: (SignInResult) -> Unit,
     onKakaoSignInClicked: () -> Unit,
 ) {
 
@@ -178,8 +179,7 @@ fun SignInScreen(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
                         // 로그인 요청
-                        viewModel.requestSignIn(email, password)
-
+                        viewModel.requestSignIn(email, password, onSignInClicked)
                     }
                 )
             }

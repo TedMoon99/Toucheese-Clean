@@ -11,7 +11,9 @@ import com.tedmoon99.data.model.remote.member.sign_in.SignInResponse
 import com.tedmoon99.domain.entity.auth.sign_in.SignInRequestEntity
 import com.tedmoon99.domain.repository.member.MemberRepository
 import com.tedmoon99.domain.repository.member.TokenRepository
+import com.tedmoon99.domain.usecase.member.SignInResult
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class MemberRepositoryImpl @Inject constructor(
@@ -20,11 +22,16 @@ class MemberRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>,
 ): MemberRepository {
 
-    override suspend fun requestSignIn(request: SignInRequestEntity) {
+    init {
+        runBlocking{ initData() }
+    }
+
+    override suspend fun requestSignIn(request: SignInRequestEntity): SignInResult {
         try {
             val response = signInService.requestSignIn(SignInMapper.fromDomain(request))
             // 요청 성공 시
             if (response.isSuccessful) {
+
                 val header = response.headers()["Authorization"]
                 if (header != null) {
                     val token = header.removePrefix("Bearer ")
@@ -43,9 +50,12 @@ class MemberRepositoryImpl @Inject constructor(
                     }
 
                 }
+                return SignInResult.Success("로그인 성공")
             }
+            return SignInResult.Failure("로그인 실패")
         } catch (error: Exception) {
             Log.e(TAG, "로그인 에러: ${error.message}")
+            return SignInResult.NetworkError
         }
     }
 
@@ -59,6 +69,16 @@ class MemberRepositoryImpl @Inject constructor(
 
     override suspend fun getUserName(): String? {
         return dataStore.data.first()[MEMBER_NAME_KEY]
+    }
+
+    private suspend fun initData() {
+        // 기존 정보 제거
+        tokenRepository.deleteTokens()
+        dataStore.edit {
+            it.remove(MEMBER_ID_KEY)
+            it.remove(MEMBER_NAME_KEY)
+            it.remove(MEMBER_EMAIL_KEY)
+        }
     }
 
     companion object {
