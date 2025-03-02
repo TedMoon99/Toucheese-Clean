@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.tedmoon99.data.datasource.remote.studio.StudioRemoteDataSource
 import com.tedmoon99.data.mapper.studio.StudioMapper
 import com.tedmoon99.data.repository.studio.paging.StudioPagingSource
-import com.tedmoon99.domain.entity.remote.concept.studios.StudioEntity
+import com.tedmoon99.domain.entity.remote.studio.StudioEntity
 import com.tedmoon99.domain.repository.studio.StudioRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -27,4 +27,10 @@ class StudioRepositoryImpl @Inject constructor(
             }
         ).flow
     }
+
+    // 컨셉 정보 조회
+    override suspend fun getConceptName(conceptId: Int): String {
+        return remoteDataSource.getConceptName(conceptId)
+    }
+
 }

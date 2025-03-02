@@ -1,7 +1,7 @@
 package com.tedmoon99.data.mapper.member
 
 import com.tedmoon99.data.model.remote.member.sign_in.SignInRequest
-import com.tedmoon99.domain.entity.auth.sign_in.SignInRequestEntity
+import com.tedmoon99.domain.entity.remote.member.SignInRequestEntity
 
 object SignInMapper {
 

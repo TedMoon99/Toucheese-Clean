@@ -10,7 +10,7 @@ data class Studio(
     @SerializedName("profileImage")
     val profileImage: String,
     @SerializedName("rating")
-    val rating: Int,
+    val rating: Double,
     @SerializedName("price")
     val price: Int,
     @SerializedName("imageUrls")

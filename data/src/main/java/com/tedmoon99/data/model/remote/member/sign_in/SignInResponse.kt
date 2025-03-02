@@ -12,5 +12,5 @@ data class SignInResponse(
     @SerializedName("refreshToken")
     val refreshToken: String,
     @SerializedName("deviceId")
-    val deviceId: String?,
+    val deviceId: String,
 )

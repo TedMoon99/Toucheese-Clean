@@ -1,7 +1,7 @@
 package com.tedmoon99.data.mapper.studio
 
 import com.tedmoon99.data.model.remote.concept.studios.content.Studio
-import com.tedmoon99.domain.entity.remote.concept.studios.StudioEntity
+import com.tedmoon99.domain.entity.remote.studio.StudioEntity
 
 object StudioMapper {
     fun toDomain(studio: Studio): StudioEntity {

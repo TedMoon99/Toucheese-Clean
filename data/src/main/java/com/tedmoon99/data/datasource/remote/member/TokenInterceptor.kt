@@ -1,4 +1,4 @@
-package com.tedmoon99.data.repository.member.token
+package com.tedmoon99.data.datasource.remote.member
 
 import android.util.Log
 import com.tedmoon99.domain.repository.member.TokenRepository

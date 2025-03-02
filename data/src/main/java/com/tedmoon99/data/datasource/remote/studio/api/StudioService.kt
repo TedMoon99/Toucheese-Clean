@@ -1,6 +1,7 @@
 package com.tedmoon99.data.datasource.remote.studio.api
 
 import com.tedmoon99.data.model.remote.concept.studios.paging.StudioDto
+import com.tedmoon99.domain.entity.remote.studio.concept.ConceptEntity
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -25,4 +26,8 @@ interface StudioService {
         @Query("rating") rating: Double?,
         @Query("locations") locations: List<String>?,
     ): StudioDto
+
+    // 컨셉 조회
+    @GET("v1/concepts")
+    suspend fun getConcept(): List<ConceptEntity>
 }
