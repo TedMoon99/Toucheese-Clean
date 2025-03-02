@@ -24,6 +24,7 @@
     <string name="label_autoSignIn">자동 로그인</string>
     <string name="label_signUp">회원가입</string>
     <string name="label_findAccount">ID·PASSWORD 찾기</string>
+    <string name="studio_profile_image">스튜디오 프로필 이미지</string>
 
 
 

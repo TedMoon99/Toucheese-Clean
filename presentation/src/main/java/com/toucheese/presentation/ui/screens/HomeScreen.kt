@@ -1,5 +1,6 @@
 package com.toucheese.presentation.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,10 +16,12 @@ import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.tedmoon99.domain.intent.home.HomeEvent
 import com.toucheese.presentation.R
 import com.toucheese.presentation.ui.component.appbar.ImageTopAppbarComponent
 import com.toucheese.presentation.ui.component.bottombar.BottomNavBarComponent
@@ -34,6 +37,11 @@ fun HomeScreen(
     onTabSelected: (Int) -> Unit,
     onCardClick: (Int) -> Unit,
 ) {
+
+    LaunchedEffect(Unit) {
+        viewModel.onEvent(HomeEvent.GetHome)
+    }
+
     Scaffold(
         topBar = {
             ImageTopAppbarComponent(
@@ -88,7 +96,12 @@ fun HomeScreen(
                             .aspectRatio(0.8f)
                             .padding(4.dp),
                         onCardClick = {
-                            onCardClick(index + 1)
+                            val conceptId = index + 1
+                            // conceptId 저장
+                            viewModel.onEvent(HomeEvent.CardClick(conceptId))
+                            // 화면전환 - 스튜디오 리스트 조회
+                            onCardClick(conceptId)
+                            Log.d("HomeScreen", "HomeState: ${conceptId}")
                         }
                     )
                 }
