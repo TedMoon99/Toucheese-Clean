@@ -6,4 +6,6 @@ interface StudioRemoteDataSource {
 
     suspend fun getStudio(conceptId: Int, page: Int): StudioDto
 
+    suspend fun getConceptName(conceptId: Int): String
+
 }

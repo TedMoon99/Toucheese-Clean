@@ -1,60 +1,50 @@
 package com.toucheese.presentation.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.tedmoon99.domain.entity.remote.concept.studios.StudioEntity
-import com.tedmoon99.domain.usecase.studio.StudioUseCase
+import com.tedmoon99.domain.intent.home.HomeEvent
+import com.tedmoon99.domain.intent.home.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val studioUseCase: StudioUseCase
+
 ) : ViewModel() {
 
-
-
-    private val _studioState = MutableStateFlow<PagingData<StudioEntity>>(value = PagingData.empty())
-    val studioState: Flow<PagingData<StudioEntity>> = _studioState
+    private val _state = MutableStateFlow(HomeState())
+    val state: StateFlow<HomeState> = _state
 
     init {
         onEvent(HomeEvent.GetHome)
     }
 
-    private fun onEvent(event: HomeEvent) {
+    fun onEvent(event: HomeEvent) {
         viewModelScope.launch {
             when (event) {
+
                 is HomeEvent.GetHome -> {
-                    getStudio(1)
+                    // 데이터 초기화
+                    _state.value = _state.value.copy(conceptId = -1)
+                }
+
+                is HomeEvent.CardClick -> {
+                    // 클릭한 카드 데이터 입력
+                    _state.value = _state.value.copy(conceptId = event.conceptId)
+                    Log.d(TAG, "클릭한 카드 id: ${event.conceptId}")
+                }
+                else -> {
+
                 }
             }
         }
-
     }
 
-    private suspend fun getStudio(conceptId: Int) {
-        studioUseCase.getStudio(conceptId)
-            .distinctUntilChanged()
-            .cachedIn(viewModelScope)
-            .collect{
-                _studioState.value = it
-            }
+    companion object{
+        private const val TAG = "HomeViewModel"
     }
-
-
 }
-
-
-sealed class HomeEvent {
-    data object GetHome: HomeEvent()
-}
-
-data class HomeState(
-    val studios: List<StudioEntity> = emptyList()
-)

@@ -4,8 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 data class RefreshTokenRequest(
     @SerializedName("refreshToken")
-    val refreshToken: String?,
+    val refreshToken: String,
     @SerializedName("deviceId")
-    val deviceId: String?
+    val deviceId: String
 ) {
+    override fun toString(): String {
+        return "refreshToken: $refreshToken\n" +
+                "deviceId: $deviceId"
+    }
 }

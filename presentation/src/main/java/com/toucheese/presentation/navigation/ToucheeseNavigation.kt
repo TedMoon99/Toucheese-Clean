@@ -1,37 +1,69 @@
 package com.toucheese.presentation.navigation
 
+import android.util.Log
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.tedmoon99.domain.usecase.member.SignInResult
+import androidx.navigation.navArgument
+import com.tedmoon99.domain.intent.member.SignInResult
 import com.toucheese.presentation.ui.screens.HomeScreen
 import com.toucheese.presentation.ui.screens.SignInScreen
+import com.toucheese.presentation.ui.screens.StudioFilterScreen
+import com.toucheese.presentation.ui.viewmodel.MemberViewModel
 import com.toucheese.presentation.utils.Navigation.Companion.bottomNavClicked
 import com.toucheese.presentation.utils.Screen
 import kotlinx.coroutines.launch
 
 @Composable
-fun ToucheeseNavigation() {
+fun ToucheeseNavigation(
+    viewModel: MemberViewModel = hiltViewModel()
+) {
+    val TAG = "ToucheeseNavigation"
     val navController = rememberNavController()
     val hostState = remember { SnackbarHostState() }
     var bottomNavSelectedTab by remember { mutableIntStateOf(0) }
     val coroutine = rememberCoroutineScope()
+    // 로그인 상태 관리
+    val isSignedOut by viewModel.signOutState.collectAsState()
+
+    LaunchedEffect(isSignedOut) {
+        when (isSignedOut){
+            true -> {
+                Log.d(TAG, "로그아웃 상태: $isSignedOut")
+                // 로그인 화면으로 이동
+                navController.navigate(Screen.SignIn.route){
+                    popUpTo(0) { inclusive = true }
+                }
+            }
+            else -> {
+                // 필요 시 구현
+                Log.d(TAG, "로그아웃 상태: $isSignedOut")
+            }
+        }
+    }
 
     NavHost(
         navController = navController,
-        startDestination = Screen.SignIn.route
+        startDestination = if (isSignedOut) Screen.SignIn.route else Screen.Home.route
     ) {
 
-        composable(Screen.Home.route){ backStackEntry: NavBackStackEntry ->
+        composable(Screen.Home.route) { backStackEntry: NavBackStackEntry ->
+
             HomeScreen(
                 selectedTab = bottomNavSelectedTab,
                 onTabSelected = { selectedTab ->
@@ -42,34 +74,39 @@ fun ToucheeseNavigation() {
                 },
                 onCardClick = { conceptId: Int ->
                     // 컨셉 스튜디오 조회 페이지로 이동
-
+                    navController.navigate(
+                        Screen.StudioFilter.route
+                            .replace("{conceptId}", "$conceptId")
+                    )
                 }
             )
         }
 
-        composable(Screen.SignIn.route){ backStackEntry: NavBackStackEntry ->
+        composable(Screen.SignIn.route) { backStackEntry: NavBackStackEntry ->
             SignInScreen(
                 hostState = hostState,
                 onSignInClicked = { signInResult ->
-                    when (signInResult){
+                    when (signInResult) {
                         is SignInResult.Success -> {
-                            navController.navigate(Screen.Home.route){
+                            navController.navigate(Screen.Home.route) {
                                 popUpTo(navController.graph.id)
                             }
                         }
+
                         is SignInResult.Failure -> {
                             coroutine.launch {
                                 hostState.showSnackbar(
                                     message = "로그인 오류",
-                                    duration =  SnackbarDuration.Short
+                                    duration = SnackbarDuration.Short
                                 )
                             }
                         }
+
                         is SignInResult.NetworkError -> {
                             coroutine.launch {
                                 hostState.showSnackbar(
                                     message = "네트워크 오류",
-                                    duration =  SnackbarDuration.Short
+                                    duration = SnackbarDuration.Short
                                 )
                             }
                         }
@@ -79,6 +116,29 @@ fun ToucheeseNavigation() {
                 onKakaoSignInClicked = {
 
                 }
+            )
+        }
+
+        composable(
+            route = Screen.StudioFilter.route,
+            arguments = listOf(
+                navArgument("conceptId") { type = NavType.IntType }
+            )
+        ) { navBackStackEntry: NavBackStackEntry ->
+
+            val conceptId = navBackStackEntry.arguments?.getInt("conceptId") ?: -1
+
+            StudioFilterScreen(
+                conceptId = conceptId,
+                modifier = Modifier.fillMaxSize(),
+                onClickLeadingIcon = {
+                    // 뒤로가기
+                    navController.popBackStack()
+                },
+                onClickTrailingIcon = {
+                    // 장바구니로 이동
+                }
+
             )
         }
     }

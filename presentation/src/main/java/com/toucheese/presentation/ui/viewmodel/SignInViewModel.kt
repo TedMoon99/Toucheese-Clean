@@ -5,8 +5,8 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tedmoon99.domain.usecase.member.SignInResult
-import com.tedmoon99.domain.usecase.member.SignInUseCase
+import com.tedmoon99.domain.intent.member.SignInResult
+import com.tedmoon99.domain.usecase.member.MemberUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val signInUseCase: SignInUseCase,
+    private val memberUseCaseImpl: MemberUseCaseImpl,
 ) : ViewModel() {
     private val mHandler = Handler(Looper.getMainLooper())
 
@@ -38,7 +38,7 @@ class SignInViewModel @Inject constructor(
         )
 
         viewModelScope.launch {
-            val result =  signInUseCase.requestSignIn(email, password)
+            val result =  memberUseCaseImpl.requestSignIn(email, password)
             Log.d(TAG, "로그인 결과: $result")
             callback(result)
         }

@@ -1,6 +1,10 @@
 package com.toucheese.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.tedmoon99.data.BuildConfig.BASE_URL
+import com.tedmoon99.data.mapper.paging.SortXAdapter
+import com.tedmoon99.data.model.remote.concept.studios.paging.SortX
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +22,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        return GsonBuilder()
+            .registerTypeAdapter(SortX::class.java, SortXAdapter())
+            .create()
+    }
 
     @BaseClient
     @Provides
@@ -29,10 +40,13 @@ object NetworkModule {
         return OkHttpClient
             .Builder().run {
                 addInterceptor(tokenInterceptor)
+                authenticator(tokenAuthenticator)
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
                 readTimeout(30, TimeUnit.SECONDS) // 서버 응답 대기 시간
                 writeTimeout(30, TimeUnit.SECONDS) // 요청 데이터 전송 시간
-                authenticator(tokenAuthenticator)
+                retryOnConnectionFailure(true)
+                followRedirects(false)// 리다이렉션 방지
+                followSslRedirects(false) // SSL 리다이렉션 방지
             }.build()
     }
 
@@ -48,30 +62,39 @@ object NetworkModule {
                 connectTimeout(30, TimeUnit.SECONDS) // 서버 연결 대기 시간
                 readTimeout(30, TimeUnit.SECONDS) // 서버 응답 대기 시간
                 writeTimeout(30, TimeUnit.SECONDS) // 요청 데이터 전송 시간
+                retryOnConnectionFailure(true)
+                followRedirects(false)// 리다이렉션 방지
+                followSslRedirects(false) // SSL 리다이렉션 방지
             }.build()
     }
 
     @BaseClient
     @Provides
     @Singleton
-    fun provideBaseRetrofit(@BaseClient okHttpClient: OkHttpClient): Retrofit {
+    fun provideBaseRetrofit(
+        @BaseClient okHttpClient: OkHttpClient,
+        gson: Gson,
+    ): Retrofit {
         return Retrofit
             .Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
     @AuthClient
     @Provides
     @Singleton
-    fun provideAuthRetrofit(@AuthClient okHttpClient: OkHttpClient): Retrofit {
+    fun provideAuthRetrofit(
+        @AuthClient okHttpClient: OkHttpClient,
+        gson: Gson,
+    ): Retrofit {
         return Retrofit
             .Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 

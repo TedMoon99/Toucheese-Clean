@@ -11,4 +11,9 @@ class StudioRemoteDataSourceImpl(
         return api.getStudio(conceptId, page)
     }
 
+    override suspend fun getConceptName(conceptId: Int): String {
+        val conceptList = api.getConcept()
+        return conceptList.first { it.id == conceptId }.name.replace("느낌","").trim()
+    }
+
 }

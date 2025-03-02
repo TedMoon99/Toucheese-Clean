@@ -2,10 +2,12 @@ package com.toucheese.di
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.tedmoon99.data.repository.member.sign_in.MemberRepositoryImpl
-import com.tedmoon99.data.repository.member.sign_in.SignInService
+import com.tedmoon99.data.datasource.remote.member.api.MemberService
+import com.tedmoon99.data.repository.member.MemberRepositoryImpl
 import com.tedmoon99.domain.repository.member.MemberRepository
 import com.tedmoon99.domain.repository.member.TokenRepository
+import com.tedmoon99.domain.usecase.member.MemberUseCase
+import com.tedmoon99.domain.usecase.member.MemberUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,15 +24,21 @@ object MemberModule {
     @Singleton
     fun provideMemberRepository(
         tokenRepository: TokenRepository,
-        signInService: SignInService,
+        memberService: MemberService,
         dataStore: DataStore<Preferences>,
     ): MemberRepository {
-        return MemberRepositoryImpl(tokenRepository, signInService, dataStore)
+        return MemberRepositoryImpl(tokenRepository, memberService, dataStore)
     }
 
     @Provides
     @Singleton
-    fun provideSignInService(
+    fun provideMemberService(
         @NetworkModule.AuthClient retrofit: Retrofit
-    ): SignInService = retrofit.create()
+    ): MemberService = retrofit.create()
+
+    @Provides
+    @Singleton
+    fun provideMemberUseCase(memberRepository: MemberRepository): MemberUseCase {
+        return MemberUseCaseImpl(memberRepository)
+    }
 }

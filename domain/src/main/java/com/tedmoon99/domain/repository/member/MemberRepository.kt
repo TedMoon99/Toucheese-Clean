@@ -1,11 +1,14 @@
 package com.tedmoon99.domain.repository.member
 
-import com.tedmoon99.domain.entity.auth.sign_in.SignInRequestEntity
-import com.tedmoon99.domain.usecase.member.SignInResult
+import com.tedmoon99.domain.entity.remote.member.SignInRequestEntity
+import com.tedmoon99.domain.intent.member.SignInResult
+import com.tedmoon99.domain.intent.member.SignOutResult
 
 interface MemberRepository {
 
     suspend fun requestSignIn(request: SignInRequestEntity): SignInResult
+
+    suspend fun requestSignOut(): SignOutResult
 
     suspend fun getUserId(): Int?
 

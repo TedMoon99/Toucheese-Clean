@@ -20,12 +20,20 @@ class TokenRepositoryImpl @Inject constructor(
         dataStore.edit { it[REFRESH_TOKEN_KEY] = refreshToken }
     }
 
+    override suspend fun setDeviceId(deviceId: String) {
+        dataStore.edit { it[DEVICE_ID_KEY] = deviceId }
+    }
+
     override suspend fun getAccessToken(): String? {
         return dataStore.data.first()[ACCESS_TOKEN_KEY]
     }
 
     override suspend fun getRefreshToken(): String? {
         return dataStore.data.first()[REFRESH_TOKEN_KEY]
+    }
+
+    override suspend fun getDeviceId(): String? {
+        return dataStore.data.first()[DEVICE_ID_KEY]
     }
 
 
@@ -40,5 +48,6 @@ class TokenRepositoryImpl @Inject constructor(
         private const val TAG = "TokenRepositoryImpl"
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("accessToken")
         private val REFRESH_TOKEN_KEY = stringPreferencesKey("refreshToken")
+        private val DEVICE_ID_KEY = stringPreferencesKey("deviceId")
     }
 }
