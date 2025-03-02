@@ -4,22 +4,28 @@ plugins {
     // Dagger-Hilt
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    // Room
+    id("androidx.room")
 }
 
 android {
     namespace = "com.tedmoon99.data"
     compileSdk = 35
 
+
     defaultConfig {
         minSdk = 24
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+    }
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://api.toucheese-macwin.store/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.toucheese.shop/\"")
         }
         release {
             isMinifyEnabled = false
@@ -27,7 +33,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://api.toucheese-macwin.store/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.toucheese.shop/\"")
         }
     }
     compileOptions {
