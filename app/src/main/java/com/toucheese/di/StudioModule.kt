@@ -31,6 +31,7 @@ object StudioModule {
     fun provideStudioRepository(remoteDataSource: StudioRemoteDataSource): StudioRepository {
         return StudioRepositoryImpl(remoteDataSource, StudioMapper)
     }
+
     @Provides
     @Singleton
     fun provideStudioUseCase(repository: StudioRepository): StudioUseCase {
