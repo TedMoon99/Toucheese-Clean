@@ -1,4 +1,4 @@
-package com.tedmoon99.domain.entity.auth.sign_in
+package com.tedmoon99.domain.entity.remote.member
 
 data class SignInRequestEntity(
     val email: String,

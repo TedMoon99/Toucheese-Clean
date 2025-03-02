@@ -6,9 +6,13 @@ interface TokenRepository {
 
     suspend fun setRefreshToken(refreshToken: String)
 
+    suspend fun setDeviceId(deviceId: String)
+
     suspend fun getAccessToken(): String?
 
     suspend fun getRefreshToken(): String?
+
+    suspend fun getDeviceId(): String?
 
     suspend fun deleteTokens()
 
