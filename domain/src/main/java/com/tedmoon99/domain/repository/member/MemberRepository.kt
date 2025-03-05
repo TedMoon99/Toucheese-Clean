@@ -10,9 +10,15 @@ interface MemberRepository {
 
     suspend fun requestSignOut(): SignOutResult
 
+    suspend fun setUserId(userId: Int)
+
     suspend fun getUserId(): Int?
 
+    suspend fun setUserEmail(email: String)
+
     suspend fun getUserEmail(): String?
+
+    suspend fun setUserName(userName: String)
 
     suspend fun getUserName(): String?
 }

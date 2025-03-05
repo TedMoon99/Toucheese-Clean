@@ -47,11 +47,9 @@ class MemberRepositoryImpl @Inject constructor(
                         tokenRepository.setDeviceId(body.deviceId)
 
                         // 회원 정보 (이름, 이메일, Id) 저장
-                        dataStore.edit {
-                            it[MEMBER_NAME_KEY] = body.name
-                            it[MEMBER_EMAIL_KEY] = body.email
-                            it[MEMBER_ID_KEY] = body.memberId
-                        }
+                        setUserId(body.memberId)
+                        setUserName(body.name)
+                        setUserEmail(body.name)
                     }
 
                 }
@@ -76,12 +74,30 @@ class MemberRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun setUserId(userId: Int) {
+        dataStore.edit { prefs ->
+            prefs[MEMBER_ID_KEY] = userId
+        }
+    }
+
     override suspend fun getUserId(): Int? {
         return dataStore.data.first()[MEMBER_ID_KEY]
     }
 
+    override suspend fun setUserEmail(email: String) {
+        dataStore.edit { prefs ->
+            prefs[MEMBER_EMAIL_KEY] = email
+        }
+    }
+
     override suspend fun getUserEmail(): String? {
         return dataStore.data.first()[MEMBER_EMAIL_KEY]
+    }
+
+    override suspend fun setUserName(userName: String) {
+        dataStore.edit { prefs ->
+            prefs[MEMBER_NAME_KEY] = userName
+        }
     }
 
     override suspend fun getUserName(): String? {
