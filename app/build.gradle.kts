@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -22,12 +25,26 @@ android {
     }
 
     buildTypes {
+        // local.properties 파일을 직접 로드
+        val localProperties = Properties().apply {
+            val localPropertiesFile = rootProject.file("local.properties")
+            if (localPropertiesFile.exists()) {
+                load(FileInputStream(localPropertiesFile))
+            }
+        }
+        // kakaoNativeAppKey 추출
+        val kakaoNativeAppKey: String = localProperties.getProperty("kakao_native_app_key", "")
+
+        debug {
+            buildConfigField("String", "KAKAO_NATIVE_KEY", "\"$kakaoNativeAppKey\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "KAKAO_NATIVE_KEY", "\"$kakaoNativeAppKey\"")
         }
     }
     compileOptions {
@@ -39,6 +56,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
