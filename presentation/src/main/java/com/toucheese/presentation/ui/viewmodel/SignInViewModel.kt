@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tedmoon99.domain.intent.member.SignInResult
-import com.tedmoon99.domain.usecase.member.MemberUseCaseImpl
+import com.tedmoon99.domain.usecase.member.MemberUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val memberUseCaseImpl: MemberUseCaseImpl,
+    private val memberUseCase: MemberUseCase,
 ) : ViewModel() {
     private val mHandler = Handler(Looper.getMainLooper())
 
@@ -38,9 +38,17 @@ class SignInViewModel @Inject constructor(
         )
 
         viewModelScope.launch {
-            val result =  memberUseCaseImpl.requestSignIn(email, password)
+            val result =  memberUseCase.requestSignIn(email, password)
             Log.d(TAG, "로그인 결과: $result")
             callback(result)
+        }
+    }
+
+    // 카카오 로그인 요청
+    fun requestKakaoSignIn() {
+        viewModelScope.launch {
+            val result = memberUseCase.requestKakaoSignIn()
+            Log.i(TAG, "카카오 로그인 결과: ${result}")
         }
     }
 
