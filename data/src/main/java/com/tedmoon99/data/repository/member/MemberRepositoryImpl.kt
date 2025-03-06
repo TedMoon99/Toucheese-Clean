@@ -10,7 +10,6 @@ import com.tedmoon99.data.datasource.remote.member.api.MemberService
 import com.tedmoon99.data.mapper.member.AdditionalInfoMapper
 import com.tedmoon99.data.mapper.member.SignInMapper
 import com.tedmoon99.data.model.remote.member.sign_in.SignInResponse
-import com.tedmoon99.data.model.remote.member.sign_up.AdditionalInfoDto
 import com.tedmoon99.domain.entity.remote.member.AdditionalInfoEntity
 import com.tedmoon99.domain.entity.remote.member.SignInRequestEntity
 import com.tedmoon99.domain.intent.member.SignInResult
