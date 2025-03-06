@@ -19,12 +19,19 @@
     <string name="text_introduce2">터치즈에 로그인하고 스튜디오를 한 눈에 살펴보세요.</string>
     <string name="placeholder_email">이메일을 입력해주세요</string>
     <string name="placeholder_password">비밀번호를 입력해주세요</string>
+    <string name="placeholder_name">이름을 입력해주세요</string>
+    <string name="placeholder_phone">전화번호를 입력해주세요</string>
     <string name="label_signIn">로그인</string>
     <string name="label_kakao_signIn">카카오 로그인</string>
     <string name="label_autoSignIn">자동 로그인</string>
     <string name="label_signUp">회원가입</string>
     <string name="label_findAccount">ID·PASSWORD 찾기</string>
     <string name="studio_profile_image">스튜디오 프로필 이미지</string>
+    <string name="label_additioinalInfo">추가 정보 입력</string>
+    <string name="label_complete">완료</string>
+    <string name="toucheese_logo">터치즈 로고</string>
+    <string name="error_message_name">이름은 한글로 2~4자 이어야 합니다.</string>
+    <string name="error_message_contact">- 없이 입력해주세요. Ex. 01012345678</string>
 
 
 

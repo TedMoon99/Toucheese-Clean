@@ -7,4 +7,6 @@ sealed class Screen(val route: String) {
     data object SignIn: Screen("SignIn")
     // Studio List
     data object StudioFilter: Screen("StudioFilter/{conceptId}")
+    // Additional info
+    data object AdditionalInfo: Screen("AdditionalInfo")
 }
