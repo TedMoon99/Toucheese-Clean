@@ -21,6 +21,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.tedmoon99.domain.intent.member.SignInResult
+import com.tedmoon99.domain.intent.member.UpdateInfoResult
+import com.toucheese.presentation.ui.screens.AdditionalInfoScreen
 import com.toucheese.presentation.ui.screens.HomeScreen
 import com.toucheese.presentation.ui.screens.SignInScreen
 import com.toucheese.presentation.ui.screens.StudioFilterScreen
@@ -113,8 +115,34 @@ fun ToucheeseNavigation(
                     }
 
                 },
-                onKakaoSignInClicked = {
+                onKakaoSignInClicked = { result ->
+                    when (result.success){
+                        true -> {
+                            if (result.isFirstLogin){
+                                // 추가 정보 입력화면으로 이동
+                                navController.navigate(Screen.AdditionalInfo.route) {
+                                    popUpTo(navController.graph.id)
+                                }
+                            }
+                            else {
+                                // Home 화면으로 이동
+                                navController.navigate(Screen.Home.route) {
+                                    popUpTo(navController.graph.id)
+                                }
+                            }
 
+                        }
+
+                        else -> {
+                            coroutine.launch {
+                                hostState.showSnackbar(
+                                    message = "카카오 로그인 실패",
+                                    duration = SnackbarDuration.Short
+                                )
+                            }
+                            Log.e(TAG, "카카오 로그인 실패: ${result}")
+                        }
+                    }
                 }
             )
         }
@@ -140,6 +168,32 @@ fun ToucheeseNavigation(
                 }
 
             )
+        }
+
+        composable(
+            route = Screen.AdditionalInfo.route,
+        ){ navBackStackEntry: NavBackStackEntry ->
+
+            AdditionalInfoScreen(
+                hostState = hostState,
+                onNextClicked = { result: UpdateInfoResult ->
+                    if (result.success){
+                        // Home 화면으로 이동
+                        navController.navigate(Screen.Home.route){
+                            popUpTo(navController.graph.id){ inclusive = true }
+                        }
+                    } else {
+                        Log.e(TAG, "추가 정보 업데이트 오류: ${result.errorMessage}")
+                        coroutine.launch {
+                            hostState.showSnackbar(
+                                message = result.errorMessage!!,
+                                duration = SnackbarDuration.Short
+                            )
+                        }
+                    }
+                }
+            )
+
         }
     }
 }

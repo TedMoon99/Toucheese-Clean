@@ -16,10 +16,10 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -30,6 +30,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.tedmoon99.domain.entity.remote.member.KakaoSignInResultEntity
 import com.tedmoon99.domain.intent.member.SignInResult
 import com.toucheese.presentation.R
 import com.toucheese.presentation.ui.component.button.ButtonComponent
@@ -37,18 +39,21 @@ import com.toucheese.presentation.ui.component.button.CheckBoxButtonComponent
 import com.toucheese.presentation.ui.component.button.TextButtonComponent
 import com.toucheese.presentation.ui.component.textfield.OutlinedTextFieldComponent
 import com.toucheese.presentation.ui.viewmodel.SignInViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @Composable
 fun SignInScreen(
     viewModel: SignInViewModel = hiltViewModel(),
     hostState: SnackbarHostState,
     onSignInClicked: (SignInResult) -> Unit,
-    onKakaoSignInClicked: () -> Unit,
+    onKakaoSignInClicked: (KakaoSignInResultEntity) -> Unit,
 ) {
 
+    val coroutine = rememberCoroutineScope()
     val (email, setEmail) = remember { mutableStateOf("") }
     val (password, setPassword) = remember { mutableStateOf("") }
-    val autoSignIn by viewModel.autoSignIn.collectAsState()
+    val autoSignIn by viewModel.autoSignIn.collectAsStateWithLifecycle()
 
     Scaffold(
         snackbarHost = {
@@ -194,7 +199,13 @@ fun SignInScreen(
                     buttonShape = RoundedCornerShape(8.dp),
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
-
+                        coroutine.launch {
+                            // 카카오 로그인 요청
+                            viewModel.requestKakaoSignIn()
+                            viewModel.kakaoSignInResult.collectLatest { result ->
+                                onKakaoSignInClicked(result)
+                            }
+                        }
                     }
                 )
             }

@@ -7,11 +7,14 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tedmoon99.data.datasource.remote.member.api.MemberService
+import com.tedmoon99.data.mapper.member.AdditionalInfoMapper
 import com.tedmoon99.data.mapper.member.SignInMapper
 import com.tedmoon99.data.model.remote.member.sign_in.SignInResponse
+import com.tedmoon99.domain.entity.remote.member.AdditionalInfoEntity
 import com.tedmoon99.domain.entity.remote.member.SignInRequestEntity
 import com.tedmoon99.domain.intent.member.SignInResult
 import com.tedmoon99.domain.intent.member.SignOutResult
+import com.tedmoon99.domain.intent.member.UpdateInfoResult
 import com.tedmoon99.domain.repository.member.MemberRepository
 import com.tedmoon99.domain.repository.member.TokenRepository
 import kotlinx.coroutines.flow.first
@@ -47,11 +50,9 @@ class MemberRepositoryImpl @Inject constructor(
                         tokenRepository.setDeviceId(body.deviceId)
 
                         // 회원 정보 (이름, 이메일, Id) 저장
-                        dataStore.edit {
-                            it[MEMBER_NAME_KEY] = body.name
-                            it[MEMBER_EMAIL_KEY] = body.email
-                            it[MEMBER_ID_KEY] = body.memberId
-                        }
+                        setUserId(body.memberId)
+                        setUserName(body.name)
+                        setUserEmail(body.name)
                     }
 
                 }
@@ -65,9 +66,8 @@ class MemberRepositoryImpl @Inject constructor(
     }
 
     override suspend fun requestSignOut(): SignOutResult {
-        val accessToken = tokenRepository.getAccessToken()
         val deviceId = tokenRepository.getDeviceId()
-        val response = memberService.requestLogout(accessToken,deviceId)
+        val response = memberService.requestLogout(deviceId)
         return if (response.code() == 200) {
             tokenRepository.deleteTokens()
             SignOutResult.Success("로그아웃 완료")
@@ -76,12 +76,41 @@ class MemberRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun requestUpdateUserInfo(request: AdditionalInfoEntity): UpdateInfoResult {
+        val additionalInfoDto = AdditionalInfoMapper.fromDomain(request)
+        val response = memberService.updateUserInfo( additionalInfoDto)
+
+        return if (response.isSuccessful && response.code() == 200) {
+            UpdateInfoResult(true)
+        } else {
+            UpdateInfoResult(false, response.errorBody().toString())
+        }
+    }
+
+    override suspend fun setUserId(userId: Int) {
+        dataStore.edit { prefs ->
+            prefs[MEMBER_ID_KEY] = userId
+        }
+    }
+
     override suspend fun getUserId(): Int? {
         return dataStore.data.first()[MEMBER_ID_KEY]
     }
 
+    override suspend fun setUserEmail(email: String) {
+        dataStore.edit { prefs ->
+            prefs[MEMBER_EMAIL_KEY] = email
+        }
+    }
+
     override suspend fun getUserEmail(): String? {
         return dataStore.data.first()[MEMBER_EMAIL_KEY]
+    }
+
+    override suspend fun setUserName(userName: String) {
+        dataStore.edit { prefs ->
+            prefs[MEMBER_NAME_KEY] = userName
+        }
     }
 
     override suspend fun getUserName(): String? {
