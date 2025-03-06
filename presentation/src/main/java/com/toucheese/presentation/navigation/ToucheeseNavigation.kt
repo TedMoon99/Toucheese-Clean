@@ -113,8 +113,32 @@ fun ToucheeseNavigation(
                     }
 
                 },
-                onKakaoSignInClicked = {
+                onKakaoSignInClicked = { result ->
+                    when (result.success){
+                        true -> {
+                            if (result.isFirstLogin){
+                                // 추가 정보 입력화면으로 이동
 
+                            }
+                            else {
+                                // Home 화면으로 이동
+                                navController.navigate(Screen.Home.route) {
+                                    popUpTo(navController.graph.id)
+                                }
+                            }
+
+                        }
+
+                        else -> {
+                            coroutine.launch {
+                                hostState.showSnackbar(
+                                    message = "카카오 로그인 실패",
+                                    duration = SnackbarDuration.Short
+                                )
+                            }
+                            Log.e(TAG, "카카오 로그인 실패: ${result}")
+                        }
+                    }
                 }
             )
         }

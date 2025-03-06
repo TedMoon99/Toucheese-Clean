@@ -1,10 +1,9 @@
 package com.toucheese.presentation.ui.viewmodel
 
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tedmoon99.domain.entity.remote.member.KakaoSignInResultEntity
 import com.tedmoon99.domain.intent.member.SignInResult
 import com.tedmoon99.domain.usecase.member.MemberUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,11 +16,15 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor(
     private val memberUseCase: MemberUseCase,
 ) : ViewModel() {
-    private val mHandler = Handler(Looper.getMainLooper())
 
     // 자동 로그인 상태
     private val _autoSignIn = MutableStateFlow(false)
     val autoSignIn: StateFlow<Boolean> = _autoSignIn
+
+    // 카카오 로그인 결과
+    private val _kakaoSignInResult = MutableStateFlow(KakaoSignInResultEntity(false))
+    val kakaoSignInResult: StateFlow<KakaoSignInResultEntity> = _kakaoSignInResult
+
 
     // 자동 로그인 설정
     fun setAuthSignIn(isChecked: Boolean) {
@@ -45,11 +48,9 @@ class SignInViewModel @Inject constructor(
     }
 
     // 카카오 로그인 요청
-    fun requestKakaoSignIn() {
-        viewModelScope.launch {
-            val result = memberUseCase.requestKakaoSignIn()
-            Log.i(TAG, "카카오 로그인 결과: ${result}")
-        }
+    suspend fun requestKakaoSignIn() {
+        val result = memberUseCase.requestKakaoSignIn()
+        _kakaoSignInResult.value = result
     }
 
     companion object {
