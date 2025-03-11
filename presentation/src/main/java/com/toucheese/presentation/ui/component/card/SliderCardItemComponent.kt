@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -32,7 +31,7 @@ import coil3.compose.rememberAsyncImagePainter
 import com.tedmoon99.domain.usecase.studio.StudioUseCase.Companion.makeTruncation
 import com.toucheese.presentation.R
 import com.toucheese.presentation.ui.component.carousel.CarouselComponent
-import com.toucheese.presentation.ui.component.chip.IconChipComponent
+import com.toucheese.presentation.ui.component.chip.IconChipNoClickComponent
 
 @Composable
 fun SliderCardItemComponent(
@@ -121,14 +120,14 @@ fun SliderCardItemComponent(
 
                 // 평점
                 if (studioRating != 0.0){
-                    IconChipComponent(
+                    IconChipNoClickComponent(
                         label = studioRating.toString(),
                         leadingIcon = R.drawable.icon_star
                     )
                 }
                 // 가격
                 if (studioPrice != 0) {
-                    IconChipComponent(
+                    IconChipNoClickComponent(
                         label = makeTruncation(studioPrice),
                         leadingIcon = R.drawable.icon_credit_card
                     )
