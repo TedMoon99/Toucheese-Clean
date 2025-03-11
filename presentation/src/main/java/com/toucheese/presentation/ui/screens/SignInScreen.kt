@@ -48,6 +48,8 @@ fun SignInScreen(
     hostState: SnackbarHostState,
     onSignInClicked: (SignInResult) -> Unit,
     onKakaoSignInClicked: (KakaoSignInResultEntity) -> Unit,
+    onSignUpClicked: () -> Unit,
+    onFindIdClicked: () -> Unit,
 ) {
 
     val coroutine = rememberCoroutineScope()
@@ -158,7 +160,7 @@ fun SignInScreen(
                     // 회원가입
                     TextButtonComponent(
                         label = R.string.label_signUp,
-                        onClick = {}
+                        onClick = onSignUpClicked
                     )
                     Text(
                         text = "/"
@@ -166,7 +168,7 @@ fun SignInScreen(
                     // ID 및 password 찾기
                     TextButtonComponent(
                         label = R.string.label_findAccount,
-                        onClick = {}
+                        onClick = onFindIdClicked
                     )
                 }
             }
