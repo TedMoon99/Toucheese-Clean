@@ -3,8 +3,10 @@ package com.tedmoon99.domain.usecase.member
 import com.tedmoon99.domain.entity.remote.member.AdditionalInfoEntity
 import com.tedmoon99.domain.entity.remote.member.KakaoSignInResultEntity
 import com.tedmoon99.domain.entity.remote.member.SignInRequestEntity
+import com.tedmoon99.domain.entity.remote.member.SignUpRequestEntity
 import com.tedmoon99.domain.intent.member.SignInResult
 import com.tedmoon99.domain.intent.member.SignOutResult
+import com.tedmoon99.domain.intent.member.SignUpResult
 import com.tedmoon99.domain.intent.member.UpdateInfoResult
 import com.tedmoon99.domain.repository.member.KakaoRepository
 import com.tedmoon99.domain.repository.member.MemberRepository
@@ -58,6 +60,16 @@ class MemberUseCaseImpl @Inject constructor(
     override suspend fun requestUpdateUserInfo(name: String, phone: String): UpdateInfoResult {
         val requestDto = AdditionalInfoEntity(name, phone)
         return memberRepository.requestUpdateUserInfo(requestDto)
+    }
+
+    override suspend fun requestSignUp(
+        email: String,
+        password: String,
+        name: String,
+        phone: String
+    ): SignUpResult {
+        val request = SignUpRequestEntity(email, password, name, phone)
+        return memberRepository.requestSignUp(request)
     }
 
     override fun getSignOutState(): StateFlow<Boolean> {
