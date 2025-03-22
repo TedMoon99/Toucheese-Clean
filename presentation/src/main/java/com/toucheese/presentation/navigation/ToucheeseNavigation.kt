@@ -26,6 +26,7 @@ import com.tedmoon99.domain.intent.member.UpdateInfoResult
 import com.toucheese.presentation.ui.screens.AdditionalInfoScreen
 import com.toucheese.presentation.ui.screens.HomeScreen
 import com.toucheese.presentation.ui.screens.SignInScreen
+import com.toucheese.presentation.ui.screens.SignUpAdditionalInfoScreen
 import com.toucheese.presentation.ui.screens.SignUpScreen
 import com.toucheese.presentation.ui.screens.StudioFilterScreen
 import com.toucheese.presentation.ui.viewmodel.MemberViewModel
@@ -232,6 +233,22 @@ fun ToucheeseNavigation(
             Log.d(TAG, "받아온 데이터\n" +
                     "email: $email\n" +
                     "password: $password"
+            )
+
+            SignUpAdditionalInfoScreen(
+                email = email,
+                password = password,
+                hostState = hostState,
+                onLeadingIconClicked = {
+                    navController.popBackStack() // 뒤로 가기
+                },
+                navigateToHome = {
+                    // 홈 화면으로 이동
+                    navController.navigate(Screen.Home.route){
+                        popUpTo(navController.graph.id){ inclusive = true }
+                    }
+                }
+
             )
 
         }

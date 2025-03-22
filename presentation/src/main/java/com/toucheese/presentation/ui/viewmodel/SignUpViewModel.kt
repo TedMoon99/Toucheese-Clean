@@ -141,6 +141,25 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
+    // 회원가입 요청
+    fun requestSignUp(
+        email: String,
+        password: String,
+        name: String,
+        phone: String,
+        callback: (Boolean) -> Unit,
+    ) {
+        try {
+            viewModelScope.launch {
+                val result = memberUseCase.requestSignUp(email, password, name, phone)
+                Log.d(TAG, "회원가입 요청 결과: ${result.isSuccess}")
+                callback(result.isSuccess)
+            }
+        } catch (e: Exception){
+            Log.e(TAG, "회원 가입 요청 실패: $e")
+        }
+    }
+
     // 이름 유효성 검사
     private fun isValidateName() {
         /** 정규 표현식 내용
