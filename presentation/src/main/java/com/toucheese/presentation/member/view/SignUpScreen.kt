@@ -1,4 +1,4 @@
-package com.toucheese.presentation.ui.screens
+package com.toucheese.presentation.member.view
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
@@ -37,7 +37,7 @@ import com.toucheese.presentation.R
 import com.toucheese.presentation.common.component.appbar.BasicTopAppbarComponent
 import com.toucheese.presentation.common.component.button.ButtonComponent
 import com.toucheese.presentation.common.component.textfield.OutlinedTextFieldErrorComponent
-import com.toucheese.presentation.ui.viewmodel.SignUpViewModel
+import com.toucheese.presentation.member.viewmodel.SignUpViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)

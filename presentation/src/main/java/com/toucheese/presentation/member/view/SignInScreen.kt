@@ -1,4 +1,4 @@
-package com.toucheese.presentation.ui.screens
+package com.toucheese.presentation.member.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
@@ -38,7 +38,7 @@ import com.toucheese.presentation.common.component.button.ButtonComponent
 import com.toucheese.presentation.common.component.button.CheckBoxButtonComponent
 import com.toucheese.presentation.common.component.button.TextButtonComponent
 import com.toucheese.presentation.common.component.textfield.OutlinedTextFieldComponent
-import com.toucheese.presentation.ui.viewmodel.SignInViewModel
+import com.toucheese.presentation.member.viewmodel.SignInViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

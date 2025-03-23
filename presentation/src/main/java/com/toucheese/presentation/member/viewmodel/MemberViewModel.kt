@@ -1,4 +1,4 @@
-package com.toucheese.presentation.ui.viewmodel
+package com.toucheese.presentation.member.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.tedmoon99.domain.usecase.member.MemberUseCase

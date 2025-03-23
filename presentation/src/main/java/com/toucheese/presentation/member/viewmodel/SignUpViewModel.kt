@@ -1,4 +1,4 @@
-package com.toucheese.presentation.ui.viewmodel
+package com.toucheese.presentation.member.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

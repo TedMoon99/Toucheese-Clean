@@ -1,4 +1,4 @@
-package com.toucheese.presentation.ui.viewmodel
+package com.toucheese.presentation.member.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -34,7 +34,8 @@ class SignInViewModel @Inject constructor(
     // 로그인 요청
     fun requestSignIn(email: String, password: String, callback: (SignInResult) -> Unit) {
         val autoSignInState = autoSignIn.value
-        Log.d(TAG, "로그인 요청\n" +
+        Log.d(
+            TAG, "로그인 요청\n" +
                 "email: $email\n" +
                 "password: $password\n" +
                 "자동 로그인:$autoSignInState"

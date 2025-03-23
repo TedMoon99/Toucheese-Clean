@@ -1,4 +1,4 @@
-package com.toucheese.presentation.ui.screens
+package com.toucheese.presentation.home.view
 
 import android.util.Log
 import androidx.compose.foundation.border
@@ -27,7 +27,7 @@ import com.toucheese.presentation.common.component.appbar.ImageTopAppbarComponen
 import com.toucheese.presentation.common.component.bottombar.BottomNavBarComponent
 import com.toucheese.presentation.common.component.card.ImageCardComponent
 import com.toucheese.presentation.common.component.searchbar.SearchBarComponent
-import com.toucheese.presentation.ui.viewmodel.HomeViewModel
+import com.toucheese.presentation.home.viewmodel.HomeViewModel
 import com.toucheese.presentation.common.utils.Concept.Companion.conceptArray
 
 @Composable

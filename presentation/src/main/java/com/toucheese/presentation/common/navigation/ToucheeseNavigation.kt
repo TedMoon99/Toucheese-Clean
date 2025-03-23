@@ -22,13 +22,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.tedmoon99.domain.intent.member.SignInResult
 import com.tedmoon99.domain.intent.member.UpdateInfoResult
-import com.toucheese.presentation.ui.screens.AdditionalInfoScreen
-import com.toucheese.presentation.ui.screens.HomeScreen
-import com.toucheese.presentation.ui.screens.SignInScreen
-import com.toucheese.presentation.ui.screens.SignUpAdditionalInfoScreen
-import com.toucheese.presentation.ui.screens.SignUpScreen
+import com.toucheese.presentation.member.view.AdditionalInfoScreen
+import com.toucheese.presentation.home.view.HomeScreen
+import com.toucheese.presentation.member.view.SignInScreen
+import com.toucheese.presentation.member.view.SignUpAdditionalInfoScreen
+import com.toucheese.presentation.member.view.SignUpScreen
 import com.toucheese.presentation.ui.screens.StudioFilterScreen
-import com.toucheese.presentation.ui.viewmodel.MemberViewModel
+import com.toucheese.presentation.member.viewmodel.MemberViewModel
 import com.toucheese.presentation.common.navigation.Navigation.Companion.bottomNavClicked
 import kotlinx.coroutines.launch
 
