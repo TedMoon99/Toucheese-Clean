@@ -1,4 +1,4 @@
-package com.toucheese.presentation.ui.screens
+package com.toucheese.presentation.studio.view
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +23,7 @@ import com.tedmoon99.domain.intent.filter.FilterEvent
 import com.toucheese.presentation.R
 import com.toucheese.presentation.common.component.appbar.BasicTopAppbarComponent
 import com.toucheese.presentation.common.component.card.SliderCardItemComponent
-import com.toucheese.presentation.ui.viewmodel.StudioFilterViewModel
+import com.toucheese.presentation.studio.viewmodel.StudioFilterViewModel
 
 @Composable
 fun StudioFilterScreen(

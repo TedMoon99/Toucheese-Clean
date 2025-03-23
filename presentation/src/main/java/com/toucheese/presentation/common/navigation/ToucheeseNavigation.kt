@@ -27,7 +27,7 @@ import com.toucheese.presentation.home.view.HomeScreen
 import com.toucheese.presentation.member.view.SignInScreen
 import com.toucheese.presentation.member.view.SignUpAdditionalInfoScreen
 import com.toucheese.presentation.member.view.SignUpScreen
-import com.toucheese.presentation.ui.screens.StudioFilterScreen
+import com.toucheese.presentation.studio.view.StudioFilterScreen
 import com.toucheese.presentation.member.viewmodel.MemberViewModel
 import com.toucheese.presentation.common.navigation.Navigation.Companion.bottomNavClicked
 import kotlinx.coroutines.launch
