@@ -34,10 +34,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tedmoon99.domain.entity.remote.member.KakaoSignInResultEntity
 import com.tedmoon99.domain.intent.member.SignInResult
 import com.toucheese.presentation.R
-import com.toucheese.presentation.ui.component.button.ButtonComponent
-import com.toucheese.presentation.ui.component.button.CheckBoxButtonComponent
-import com.toucheese.presentation.ui.component.button.TextButtonComponent
-import com.toucheese.presentation.ui.component.textfield.OutlinedTextFieldComponent
+import com.toucheese.presentation.common.component.button.ButtonComponent
+import com.toucheese.presentation.common.component.button.CheckBoxButtonComponent
+import com.toucheese.presentation.common.component.button.TextButtonComponent
+import com.toucheese.presentation.common.component.textfield.OutlinedTextFieldComponent
 import com.toucheese.presentation.ui.viewmodel.SignInViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

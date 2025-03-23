@@ -23,12 +23,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.tedmoon99.domain.intent.home.HomeEvent
 import com.toucheese.presentation.R
-import com.toucheese.presentation.ui.component.appbar.ImageTopAppbarComponent
-import com.toucheese.presentation.ui.component.bottombar.BottomNavBarComponent
-import com.toucheese.presentation.ui.component.card.ImageCardComponent
-import com.toucheese.presentation.ui.component.searchbar.SearchBarComponent
+import com.toucheese.presentation.common.component.appbar.ImageTopAppbarComponent
+import com.toucheese.presentation.common.component.bottombar.BottomNavBarComponent
+import com.toucheese.presentation.common.component.card.ImageCardComponent
+import com.toucheese.presentation.common.component.searchbar.SearchBarComponent
 import com.toucheese.presentation.ui.viewmodel.HomeViewModel
-import com.toucheese.presentation.utils.Concept.Companion.conceptArray
+import com.toucheese.presentation.common.utils.Concept.Companion.conceptArray
 
 @Composable
 fun HomeScreen(

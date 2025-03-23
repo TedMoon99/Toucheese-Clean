@@ -21,8 +21,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import com.tedmoon99.domain.intent.filter.FilterEvent
 import com.toucheese.presentation.R
-import com.toucheese.presentation.ui.component.appbar.BasicTopAppbarComponent
-import com.toucheese.presentation.ui.component.card.SliderCardItemComponent
+import com.toucheese.presentation.common.component.appbar.BasicTopAppbarComponent
+import com.toucheese.presentation.common.component.card.SliderCardItemComponent
 import com.toucheese.presentation.ui.viewmodel.StudioFilterViewModel
 
 @Composable

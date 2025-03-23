@@ -42,9 +42,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tedmoon99.domain.intent.member.UpdateInfoResult
 import com.toucheese.presentation.R
-import com.toucheese.presentation.ui.component.appbar.BasicTopAppbarComponent
-import com.toucheese.presentation.ui.component.button.ButtonComponent
-import com.toucheese.presentation.ui.component.textfield.OutlinedTextFieldErrorComponent
+import com.toucheese.presentation.common.component.appbar.BasicTopAppbarComponent
+import com.toucheese.presentation.common.component.button.ButtonComponent
+import com.toucheese.presentation.common.component.textfield.OutlinedTextFieldErrorComponent
 import com.toucheese.presentation.ui.viewmodel.SignUpViewModel
 import kotlinx.coroutines.launch
 
