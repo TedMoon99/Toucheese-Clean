@@ -2,8 +2,8 @@ package com.toucheese.di
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.tedmoon99.data.datasource.remote.member.api.MemberService
-import com.tedmoon99.data.repository.member.MemberRepositoryImpl
+import com.tedmoon99.data.member.datasource.MemberService
+import com.tedmoon99.data.member.repository.MemberRepositoryImpl
 import com.tedmoon99.domain.kakao.repository.KakaoRepository
 import com.tedmoon99.domain.member.repository.MemberRepository
 import com.tedmoon99.domain.member.repository.TokenRepository

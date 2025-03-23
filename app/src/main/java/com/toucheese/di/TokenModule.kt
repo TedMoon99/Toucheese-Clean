@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.tedmoon99.data.datasource.remote.member.TokenAuthenticator
-import com.tedmoon99.data.datasource.remote.member.TokenInterceptor
-import com.tedmoon99.data.datasource.remote.member.api.TokenService
-import com.tedmoon99.data.repository.member.token.TokenRepositoryImpl
+import com.tedmoon99.data.common.token.datasource.TokenService
+import com.tedmoon99.data.common.token.datasource.TokenInterceptor
+import com.tedmoon99.data.common.token.datasource.TokenAuthenticator
+import com.tedmoon99.data.common.token.repository.TokenRepositoryImpl
 import com.tedmoon99.domain.member.repository.TokenRepository
 import com.tedmoon99.domain.member.usecase.MemberUseCase
 import dagger.Module
