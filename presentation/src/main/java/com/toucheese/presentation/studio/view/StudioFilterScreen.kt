@@ -19,7 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
-import com.tedmoon99.domain.intent.filter.FilterEvent
+import com.tedmoon99.domain.studio.model.FilterEvent
 import com.toucheese.presentation.R
 import com.toucheese.presentation.common.component.appbar.BasicTopAppbarComponent
 import com.toucheese.presentation.common.component.card.SliderCardItemComponent

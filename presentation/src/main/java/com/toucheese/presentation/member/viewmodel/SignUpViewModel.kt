@@ -3,8 +3,8 @@ package com.toucheese.presentation.member.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tedmoon99.domain.intent.member.UpdateInfoResult
-import com.tedmoon99.domain.usecase.member.MemberUseCase
+import com.tedmoon99.domain.member.model.UpdateInfoResult
+import com.tedmoon99.domain.member.usecase.MemberUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow

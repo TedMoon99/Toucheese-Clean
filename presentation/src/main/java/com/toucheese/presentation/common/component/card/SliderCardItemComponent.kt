@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
-import com.tedmoon99.domain.usecase.studio.StudioUseCase.Companion.makeTruncation
+import com.tedmoon99.domain.studio.usecase.StudioUseCase.Companion.makeTruncation
 import com.toucheese.presentation.R
 import com.toucheese.presentation.common.component.carousel.CarouselComponent
 import com.toucheese.presentation.common.component.chip.IconChipNoClickComponent

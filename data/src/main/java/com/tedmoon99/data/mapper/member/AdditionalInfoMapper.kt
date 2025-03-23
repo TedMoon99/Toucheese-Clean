@@ -1,7 +1,7 @@
 package com.tedmoon99.data.mapper.member
 
 import com.tedmoon99.data.model.remote.member.sign_up.AdditionalInfoDto
-import com.tedmoon99.domain.entity.remote.member.AdditionalInfoEntity
+import com.tedmoon99.domain.member.model.AdditionalInfoEntity
 
 object AdditionalInfoMapper {
 

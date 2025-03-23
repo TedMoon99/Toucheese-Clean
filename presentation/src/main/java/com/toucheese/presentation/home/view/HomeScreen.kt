@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.tedmoon99.domain.intent.home.HomeEvent
+import com.tedmoon99.domain.home.model.HomeEvent
 import com.toucheese.presentation.R
 import com.toucheese.presentation.common.component.appbar.ImageTopAppbarComponent
 import com.toucheese.presentation.common.component.bottombar.BottomNavBarComponent

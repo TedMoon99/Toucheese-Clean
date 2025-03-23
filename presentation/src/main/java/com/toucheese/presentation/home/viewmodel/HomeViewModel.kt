@@ -3,8 +3,8 @@ package com.toucheese.presentation.home.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tedmoon99.domain.intent.home.HomeEvent
-import com.tedmoon99.domain.intent.home.HomeState
+import com.tedmoon99.domain.home.model.HomeEvent
+import com.tedmoon99.domain.home.model.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

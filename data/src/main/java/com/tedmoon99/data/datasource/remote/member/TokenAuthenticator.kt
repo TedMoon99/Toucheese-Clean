@@ -6,8 +6,8 @@ import android.util.Log
 import androidx.annotation.RequiresExtension
 import com.tedmoon99.data.datasource.remote.member.api.TokenService
 import com.tedmoon99.data.model.remote.member.token.RefreshTokenRequest
-import com.tedmoon99.domain.repository.member.TokenRepository
-import com.tedmoon99.domain.usecase.member.MemberUseCase
+import com.tedmoon99.domain.member.repository.TokenRepository
+import com.tedmoon99.domain.member.usecase.MemberUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex

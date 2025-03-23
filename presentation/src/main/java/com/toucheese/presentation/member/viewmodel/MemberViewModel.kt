@@ -1,7 +1,7 @@
 package com.toucheese.presentation.member.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.tedmoon99.domain.usecase.member.MemberUseCase
+import com.tedmoon99.domain.member.usecase.MemberUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

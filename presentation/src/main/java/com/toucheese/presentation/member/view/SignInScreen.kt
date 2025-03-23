@@ -31,8 +31,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.tedmoon99.domain.entity.remote.member.KakaoSignInResultEntity
-import com.tedmoon99.domain.intent.member.SignInResult
+import com.tedmoon99.domain.kakao.model.KakaoSignInResultEntity
+import com.tedmoon99.domain.member.model.SignInResult
 import com.toucheese.presentation.R
 import com.toucheese.presentation.common.component.button.ButtonComponent
 import com.toucheese.presentation.common.component.button.CheckBoxButtonComponent

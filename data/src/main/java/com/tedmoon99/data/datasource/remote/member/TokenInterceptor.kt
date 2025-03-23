@@ -1,7 +1,7 @@
 package com.tedmoon99.data.datasource.remote.member
 
 import android.util.Log
-import com.tedmoon99.domain.repository.member.TokenRepository
+import com.tedmoon99.domain.member.repository.TokenRepository
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response

@@ -8,7 +8,7 @@ import androidx.paging.PagingState
 import com.tedmoon99.data.datasource.remote.studio.StudioRemoteDataSource
 import com.tedmoon99.data.mapper.studio.StudioMapper
 import com.tedmoon99.data.utils.Paging.Companion.STARTING_PAGE
-import com.tedmoon99.domain.entity.remote.studio.StudioEntity
+import com.tedmoon99.domain.studio.model.StudioEntity
 import java.io.IOException
 
 class StudioPagingSource(

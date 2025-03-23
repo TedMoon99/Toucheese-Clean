@@ -1,7 +1,7 @@
 package com.tedmoon99.data.mapper.member
 
 import com.tedmoon99.data.model.remote.member.sign_in.KakaoSignOutResult
-import com.tedmoon99.domain.entity.remote.member.KakaoSignOutResultEntity
+import com.tedmoon99.domain.kakao.model.KakaoSignOutResultEntity
 
 object KakaoSignOutMapper {
 

@@ -40,7 +40,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.tedmoon99.domain.intent.member.UpdateInfoResult
+import com.tedmoon99.domain.member.model.UpdateInfoResult
 import com.toucheese.presentation.R
 import com.toucheese.presentation.common.component.appbar.BasicTopAppbarComponent
 import com.toucheese.presentation.common.component.button.ButtonComponent

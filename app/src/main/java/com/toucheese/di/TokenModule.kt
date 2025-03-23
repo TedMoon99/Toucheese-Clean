@@ -8,8 +8,8 @@ import com.tedmoon99.data.datasource.remote.member.TokenAuthenticator
 import com.tedmoon99.data.datasource.remote.member.TokenInterceptor
 import com.tedmoon99.data.datasource.remote.member.api.TokenService
 import com.tedmoon99.data.repository.member.token.TokenRepositoryImpl
-import com.tedmoon99.domain.repository.member.TokenRepository
-import com.tedmoon99.domain.usecase.member.MemberUseCase
+import com.tedmoon99.domain.member.repository.TokenRepository
+import com.tedmoon99.domain.member.usecase.MemberUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

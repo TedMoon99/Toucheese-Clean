@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.tedmoon99.domain.entity.remote.studio.StudioEntity
-import com.tedmoon99.domain.intent.filter.FilterEvent
-import com.tedmoon99.domain.usecase.studio.StudioUseCase
+import com.tedmoon99.domain.studio.model.StudioEntity
+import com.tedmoon99.domain.studio.model.FilterEvent
+import com.tedmoon99.domain.studio.usecase.StudioUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

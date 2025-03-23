@@ -4,11 +4,11 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.tedmoon99.data.datasource.remote.member.api.MemberService
 import com.tedmoon99.data.repository.member.MemberRepositoryImpl
-import com.tedmoon99.domain.repository.member.KakaoRepository
-import com.tedmoon99.domain.repository.member.MemberRepository
-import com.tedmoon99.domain.repository.member.TokenRepository
-import com.tedmoon99.domain.usecase.member.MemberUseCase
-import com.tedmoon99.domain.usecase.member.MemberUseCaseImpl
+import com.tedmoon99.domain.kakao.repository.KakaoRepository
+import com.tedmoon99.domain.member.repository.MemberRepository
+import com.tedmoon99.domain.member.repository.TokenRepository
+import com.tedmoon99.domain.member.usecase.MemberUseCase
+import com.tedmoon99.domain.member.usecase.MemberUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

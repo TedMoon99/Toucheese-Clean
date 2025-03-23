@@ -20,8 +20,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.tedmoon99.domain.intent.member.SignInResult
-import com.tedmoon99.domain.intent.member.UpdateInfoResult
+import com.tedmoon99.domain.member.model.SignInResult
+import com.tedmoon99.domain.member.model.UpdateInfoResult
 import com.toucheese.presentation.member.view.AdditionalInfoScreen
 import com.toucheese.presentation.home.view.HomeScreen
 import com.toucheese.presentation.member.view.SignInScreen

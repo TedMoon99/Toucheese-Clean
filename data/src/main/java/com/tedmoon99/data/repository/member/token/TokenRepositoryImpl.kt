@@ -4,7 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.tedmoon99.domain.repository.member.TokenRepository
+import com.tedmoon99.domain.member.repository.TokenRepository
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 

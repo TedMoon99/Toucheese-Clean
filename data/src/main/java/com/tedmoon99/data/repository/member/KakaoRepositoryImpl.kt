@@ -10,11 +10,11 @@ import com.tedmoon99.data.mapper.member.KakaoSignOutMapper
 import com.tedmoon99.data.model.remote.member.sign_in.KakaoSignInDto
 import com.tedmoon99.data.model.remote.member.sign_in.KakaoSignInResult
 import com.tedmoon99.data.model.remote.member.sign_in.KakaoSignOutResult
-import com.tedmoon99.domain.entity.remote.member.KakaoSignInResultEntity
-import com.tedmoon99.domain.entity.remote.member.KakaoSignOutResultEntity
-import com.tedmoon99.domain.repository.member.KakaoRepository
-import com.tedmoon99.domain.repository.member.MemberRepository
-import com.tedmoon99.domain.repository.member.TokenRepository
+import com.tedmoon99.domain.kakao.model.KakaoSignInResultEntity
+import com.tedmoon99.domain.kakao.model.KakaoSignOutResultEntity
+import com.tedmoon99.domain.kakao.repository.KakaoRepository
+import com.tedmoon99.domain.member.repository.MemberRepository
+import com.tedmoon99.domain.member.repository.TokenRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
@@ -27,7 +27,7 @@ class KakaoRepositoryImpl @Inject constructor(
     private val kakaoService: KakaoService,
     private val tokenRepository: TokenRepository,
     private val memberRepository: MemberRepository,
-) : KakaoRepository{
+) : KakaoRepository {
 
     private val _isKakaoSignIn = MutableStateFlow(false)
     private val isKakaoSignIn: StateFlow<Boolean> = _isKakaoSignIn
