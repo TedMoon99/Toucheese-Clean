@@ -14,6 +14,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -25,6 +26,8 @@ import com.tedmoon99.domain.intent.member.UpdateInfoResult
 import com.toucheese.presentation.ui.screens.AdditionalInfoScreen
 import com.toucheese.presentation.ui.screens.HomeScreen
 import com.toucheese.presentation.ui.screens.SignInScreen
+import com.toucheese.presentation.ui.screens.SignUpAdditionalInfoScreen
+import com.toucheese.presentation.ui.screens.SignUpScreen
 import com.toucheese.presentation.ui.screens.StudioFilterScreen
 import com.toucheese.presentation.ui.viewmodel.MemberViewModel
 import com.toucheese.presentation.utils.Navigation.Companion.bottomNavClicked
@@ -143,6 +146,13 @@ fun ToucheeseNavigation(
                             Log.e(TAG, "카카오 로그인 실패: ${result}")
                         }
                     }
+                },
+                onSignUpClicked = {
+                    // 회원가입
+                    navController.navigate(Screen.SignUp.route)
+                },
+                onFindIdClicked = {
+                    // Id & PW 찾기
                 }
             )
         }
@@ -195,5 +205,54 @@ fun ToucheeseNavigation(
             )
 
         }
+
+        composable(Screen.SignUp.route){ navBackStackEntry: NavBackStackEntry ->
+            SignUpScreen(
+                onNextClicked = { email: String, password: String ->
+                    navController.navigate(
+                        Screen.SignUpAdditionalInfo.route
+                            .replace("{email}", email)
+                            .replace("{password}", password)
+                    )
+                },
+                onLeadingIconClicked = {
+                    navController.popBackStack() // 뒤로가기
+                }
+            )
+        }
+
+        composable(
+            Screen.SignUpAdditionalInfo.route,
+            arguments = listOf(
+                navArgument("email") { type = NavType.StringType },
+                navArgument("password") { type = NavType.StringType },
+            ),
+        ) { navBackStackEntry: NavBackStackEntry ->
+            val email = navBackStackEntry.arguments?.getString("email") ?: ""
+            val password = navBackStackEntry.arguments?.getString("password") ?: ""
+            Log.d(TAG, "받아온 데이터\n" +
+                    "email: $email\n" +
+                    "password: $password"
+            )
+
+            SignUpAdditionalInfoScreen(
+                email = email,
+                password = password,
+                hostState = hostState,
+                onLeadingIconClicked = {
+                    navController.popBackStack() // 뒤로 가기
+                },
+                navigateToHome = {
+                    // 홈 화면으로 이동
+                    navController.navigate(Screen.Home.route){
+                        popUpTo(navController.graph.id){ inclusive = true }
+                    }
+                }
+
+            )
+
+        }
+
+
     }
 }

@@ -3,6 +3,7 @@ package com.tedmoon99.data.datasource.remote.member.api
 import com.tedmoon99.data.model.remote.member.sign_in.SignInRequest
 import com.tedmoon99.data.model.remote.member.sign_in.SignInResponse
 import com.tedmoon99.data.model.remote.member.sign_up.AdditionalInfoDto
+import com.tedmoon99.data.model.remote.member.sign_up.SignUpDto
 import com.tedmoon99.data.model.remote.response.TokenApiResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -27,4 +28,10 @@ interface MemberService {
     suspend fun updateUserInfo(
         @Body additionalInfo: AdditionalInfoDto
     ): Response<Unit>
+
+    @POST("v1/members/signup")
+    suspend fun requestSignUp(
+        @Body signUpDto: SignUpDto
+    ): Response<Unit>
+
 }

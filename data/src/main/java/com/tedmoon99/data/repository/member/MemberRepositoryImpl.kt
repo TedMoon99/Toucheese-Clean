@@ -9,11 +9,14 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tedmoon99.data.datasource.remote.member.api.MemberService
 import com.tedmoon99.data.mapper.member.AdditionalInfoMapper
 import com.tedmoon99.data.mapper.member.SignInMapper
+import com.tedmoon99.data.mapper.member.SignUpMapper
 import com.tedmoon99.data.model.remote.member.sign_in.SignInResponse
 import com.tedmoon99.domain.entity.remote.member.AdditionalInfoEntity
 import com.tedmoon99.domain.entity.remote.member.SignInRequestEntity
+import com.tedmoon99.domain.entity.remote.member.SignUpRequestEntity
 import com.tedmoon99.domain.intent.member.SignInResult
 import com.tedmoon99.domain.intent.member.SignOutResult
+import com.tedmoon99.domain.intent.member.SignUpResult
 import com.tedmoon99.domain.intent.member.UpdateInfoResult
 import com.tedmoon99.domain.repository.member.MemberRepository
 import com.tedmoon99.domain.repository.member.TokenRepository
@@ -63,6 +66,13 @@ class MemberRepositoryImpl @Inject constructor(
             Log.e(TAG, "로그인 에러: ${error.message}")
             return SignInResult.NetworkError
         }
+    }
+
+    override suspend fun requestSignUp(request: SignUpRequestEntity): SignUpResult {
+        val dto = SignUpMapper.fromDomain(request)
+        val response = memberService.requestSignUp(dto)
+        Log.d(TAG, "회원가입 요청 결과: ${response.code()}")
+        return SignUpResult(response.isSuccessful && response.code() == 200)
     }
 
     override suspend fun requestSignOut(): SignOutResult {

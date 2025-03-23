@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.toucheese.presentation.R
 
 @Composable
-fun IconChipComponent(
+fun IconChipNoClickComponent(
     label: String,
     @DrawableRes leadingIcon: Int,
     modifier: Modifier = Modifier,

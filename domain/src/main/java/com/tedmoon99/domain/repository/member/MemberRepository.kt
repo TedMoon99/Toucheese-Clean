@@ -2,13 +2,17 @@ package com.tedmoon99.domain.repository.member
 
 import com.tedmoon99.domain.entity.remote.member.AdditionalInfoEntity
 import com.tedmoon99.domain.entity.remote.member.SignInRequestEntity
+import com.tedmoon99.domain.entity.remote.member.SignUpRequestEntity
 import com.tedmoon99.domain.intent.member.SignInResult
 import com.tedmoon99.domain.intent.member.SignOutResult
+import com.tedmoon99.domain.intent.member.SignUpResult
 import com.tedmoon99.domain.intent.member.UpdateInfoResult
 
 interface MemberRepository {
 
     suspend fun requestSignIn(request: SignInRequestEntity): SignInResult
+
+    suspend fun requestSignUp(request: SignUpRequestEntity): SignUpResult
 
     suspend fun requestSignOut(): SignOutResult
 

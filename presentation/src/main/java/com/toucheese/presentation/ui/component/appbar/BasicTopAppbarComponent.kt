@@ -1,8 +1,7 @@
 package com.toucheese.presentation.ui.component.appbar
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -10,10 +9,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.toucheese.presentation.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,7 +40,8 @@ fun BasicTopAppbarComponent(
                 IconButton(onClick = onClickLeadingIcon) {
                     Icon(
                         painter = painterResource(leadingIcon),
-                        contentDescription = stringResource(R.string.topbar_image_leadingIcon)
+                        contentDescription = stringResource(R.string.topbar_image_leadingIcon),
+                        modifier = Modifier.size(24.dp)
                     )
                 }
             } else {
@@ -57,7 +57,8 @@ fun BasicTopAppbarComponent(
                 IconButton(onClick = onClickTrailingIcon) {
                     Icon(
                         painter = painterResource(trailingIcon),
-                        contentDescription = stringResource(R.string.topbar_image_trailingIcon)
+                        contentDescription = stringResource(R.string.topbar_image_trailingIcon),
+                        modifier = Modifier.size(24.dp)
                     )
                 }
             } else {
