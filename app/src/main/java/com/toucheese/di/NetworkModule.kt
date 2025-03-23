@@ -3,8 +3,8 @@ package com.toucheese.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.tedmoon99.data.BuildConfig.BASE_URL
-import com.tedmoon99.data.mapper.paging.SortXAdapter
-import com.tedmoon99.data.model.remote.concept.studios.paging.SortX
+import com.tedmoon99.data.common.paging.mapper.SortXAdapter
+import com.tedmoon99.data.common.paging.model.SortX
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

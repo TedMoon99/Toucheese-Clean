@@ -1,6 +1,6 @@
 package com.toucheese.presentation
 
-import com.tedmoon99.domain.usecase.studio.StudioUseCase.Companion.makeTruncation
+import com.tedmoon99.domain.studio.usecase.StudioUseCase.Companion.makeTruncation
 import org.junit.Assert
 import org.junit.Test
 

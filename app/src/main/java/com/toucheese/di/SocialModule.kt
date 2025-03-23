@@ -1,11 +1,11 @@
 package com.toucheese.di
 
 import android.content.Context
-import com.tedmoon99.data.datasource.remote.member.api.KakaoService
-import com.tedmoon99.data.repository.member.KakaoRepositoryImpl
-import com.tedmoon99.domain.repository.member.KakaoRepository
-import com.tedmoon99.domain.repository.member.MemberRepository
-import com.tedmoon99.domain.repository.member.TokenRepository
+import com.tedmoon99.data.kakao.datasource.KakaoService
+import com.tedmoon99.data.kakao.repository.KakaoRepositoryImpl
+import com.tedmoon99.domain.kakao.repository.KakaoRepository
+import com.tedmoon99.domain.member.repository.MemberRepository
+import com.tedmoon99.domain.member.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

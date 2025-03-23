@@ -1,12 +1,12 @@
 package com.toucheese.di
 
-import com.tedmoon99.data.datasource.remote.studio.StudioRemoteDataSource
-import com.tedmoon99.data.datasource.remote.studio.StudioRemoteDataSourceImpl
-import com.tedmoon99.data.datasource.remote.studio.api.StudioService
-import com.tedmoon99.data.mapper.studio.StudioMapper
-import com.tedmoon99.data.repository.studio.StudioRepositoryImpl
-import com.tedmoon99.domain.repository.studio.StudioRepository
-import com.tedmoon99.domain.usecase.studio.StudioUseCase
+import com.tedmoon99.data.studio.datasource.StudioRemoteDataSource
+import com.tedmoon99.data.studio.datasource.StudioRemoteDataSourceImpl
+import com.tedmoon99.data.studio.datasource.StudioService
+import com.tedmoon99.data.studio.mapper.StudioMapper
+import com.tedmoon99.data.studio.repository.StudioRepositoryImpl
+import com.tedmoon99.domain.studio.repository.StudioRepository
+import com.tedmoon99.domain.studio.usecase.StudioUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
