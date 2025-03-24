@@ -31,9 +31,11 @@ Android App Architecture를 따르기 위하여 **app**, **data**, **domain**, *
 - data 모듈: **domain**
 - domain 모듈: X
 - presentation 모듈: **domain**
+
 ![image](https://github.com/user-attachments/assets/d0046b8d-436a-4e63-bad1-6f0359c71842)
 
 ### 데이터 플로우
+
 ![image](https://github.com/user-attachments/assets/b33d41f7-2d80-469a-8dd4-55bb2dcf998d)
 
 
