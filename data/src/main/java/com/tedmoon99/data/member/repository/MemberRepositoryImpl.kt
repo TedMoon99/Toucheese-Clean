@@ -72,7 +72,7 @@ class MemberRepositoryImpl @Inject constructor(
         val dto = SignUpMapper.fromDomain(request)
         val response = memberService.requestSignUp(dto)
         Log.d(TAG, "회원가입 요청 결과: ${response.code()}")
-        return SignUpResult(response.isSuccessful && response.code() == 200)
+        return SignUpResult(response.isSuccessful && response.code() == 201)
     }
 
     override suspend fun requestSignOut(): SignOutResult {
