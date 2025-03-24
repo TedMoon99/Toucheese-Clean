@@ -1,6 +1,8 @@
 package com.toucheese.presentation.member.view
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Scaffold
@@ -22,6 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -42,6 +47,7 @@ import com.toucheese.presentation.member.viewmodel.SignInViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SignInScreen(
     viewModel: SignInViewModel = hiltViewModel(),
@@ -53,6 +59,9 @@ fun SignInScreen(
 ) {
 
     val coroutine = rememberCoroutineScope()
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val (email, setEmail) = remember { mutableStateOf("") }
     val (password, setPassword) = remember { mutableStateOf("") }
     val autoSignIn by viewModel.autoSignIn.collectAsStateWithLifecycle()
@@ -61,6 +70,10 @@ fun SignInScreen(
         snackbarHost = {
             SnackbarHost(hostState = hostState)
 
+        },
+        modifier = Modifier.clickable {
+            keyboardController?.hide()
+            focusManager.clearFocus()
         }
     ) { innerPadding ->
 
@@ -118,7 +131,10 @@ fun SignInScreen(
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     visualTransformation = VisualTransformation.None,
-                    onValueChange = setEmail
+                    onValueChange = {
+                        setEmail(it)
+                        coroutine.launch { bringIntoViewRequester.bringIntoView() }
+                    }
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
@@ -134,7 +150,10 @@ fun SignInScreen(
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     visualTransformation = PasswordVisualTransformation(),
-                    onValueChange = setPassword
+                    onValueChange = {
+                        coroutine.launch { bringIntoViewRequester.bringIntoView() }
+                        setPassword(it)
+                    }
                 )
 
                 // 빈 공간
@@ -185,6 +204,9 @@ fun SignInScreen(
                     buttonShape = RoundedCornerShape(8.dp),
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
+                        // focus 제거
+                        keyboardController?.hide()
+                        focusManager.clearFocus()
                         // 로그인 요청
                         viewModel.requestSignIn(email, password, onSignInClicked)
                     }
@@ -202,6 +224,9 @@ fun SignInScreen(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
                         coroutine.launch {
+                            // focus 제거
+                            keyboardController?.hide()
+                            focusManager.clearFocus()
                             // 카카오 로그인 요청
                             viewModel.requestKakaoSignIn()
                             viewModel.kakaoSignInResult.collectLatest { result ->
